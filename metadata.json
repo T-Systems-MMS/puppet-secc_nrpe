@@ -1,0 +1,13 @@
+{
+  "author": "jans",
+  "dependencies": [ {"name":"puppetlabs/stdlib"} ],
+  "license": "",
+  "name": "secc_nrpe",
+  "operatingsystem_support": [ "RHEL6", "RHEL7", "CentOS6", "CentOS7" ],
+  "project_page": "",
+  "requirements": [],
+  "source": "",
+  "summary": "",
+  "tags": [],
+  "version": "0.1"
+}
