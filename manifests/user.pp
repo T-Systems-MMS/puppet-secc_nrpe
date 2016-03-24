@@ -1,21 +1,27 @@
 class secc_nrpe::user {
 
-  # GID 10000 - nrpe
-  group { 'nrpe':
-    ensure => 'present',
-    gid    => '10000',
-    name   => 'nrpe',
-  }
-
-  # UID 10000 - nrpe
   user { 'nrpe':
     ensure     => 'present',
-    uid        => '10000',
     gid        => 'nrpe',
     comment    => 'NRPE user for the NRPE service',
     shell      => '/sbin/nologin',
     home       => '/home/nrpe',
     managehome => true,
-    require    => Group['nrpe'],
+    require    => Package['nrpe'],
+  }
+
+  group { 'nrpe':
+    ensure  => 'present',
+    name    => 'nrpe',
+    require => User['nrpe'],
+  }
+
+  # ensure security for dependency user nagios
+  user { 'nagios':
+    ensure   => 'present',
+    home     => '/var/spool/nagios',
+    password => '!!',
+    shell    => '/sbin/nologin',
+    require  => Package['nrpe'],
   }
 }

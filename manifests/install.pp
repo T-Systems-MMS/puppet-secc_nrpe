@@ -1,9 +1,8 @@
 class secc_nrpe::install {
 
   package { 'nrpe':
-    ensure  => installed,
-    alias   => 'nrpe',
-    require => Class['secc_nrpe::user']
+    ensure => installed,
+    alias  => 'nrpe',
   }
 
   file { '/home/nrpe/':
@@ -13,7 +12,6 @@ class secc_nrpe::install {
     mode    => '0755',
     recurse => true,
     purge   => true,
-    require => Package['nrpe']
   }
 
   file { '/home/nrpe/bin/':

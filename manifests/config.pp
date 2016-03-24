@@ -4,6 +4,9 @@ class secc_nrpe::config {
     ensure  => directory,
     recurse => true,
     purge   => true,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
   }
 
   file { '/etc/nagios/nrpe.cfg':
@@ -19,6 +22,9 @@ class secc_nrpe::config {
     ensure  => directory,
     recurse => true,
     purge   => true,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
   }
 
   file { '/etc/nrpe.d/general.cfg':
@@ -28,6 +34,13 @@ class secc_nrpe::config {
     mode    => '0644',
     source  => 'puppet:///modules/secc_nrpe/etc/nrpe.d/general.cfg',
     require => File['/etc/nrpe.d/'],
+  }
+
+  file { '/var/run/nrpe':
+    ensure => directory,
+    owner  => 'nrpe',
+    group  => 'nrpe',
+    mode   => '0755',
   }
 
 }

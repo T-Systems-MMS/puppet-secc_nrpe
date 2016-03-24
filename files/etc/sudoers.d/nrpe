@@ -1,1 +1,1 @@
-Defaults:nrpe !requiretty
+Defaults:nrpe         !requiretty
