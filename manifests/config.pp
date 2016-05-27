@@ -1,4 +1,10 @@
-class secc_nrpe::config {
+class secc_nrpe::config(
+  $server_address,
+  $server_port,
+  $allowed_hosts,
+  $nrpe_user,
+  $nrpe_group,
+) {
 
   file { '/etc/nagios/':
     ensure  => directory,
@@ -7,33 +13,16 @@ class secc_nrpe::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
+    require => Class['secc_nrpe::install']
   }
 
   file { '/etc/nagios/nrpe.cfg':
     ensure  => present,
+    content => template('secc_nrpe/etc/nagios/nrpe.cfg.erb'),
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    source  => 'puppet:///modules/secc_nrpe/etc/nagios/nrpe.cfg',
     require => File['/etc/nagios/'],
-  }
-
-  file { '/etc/nrpe.d/':
-    ensure  => directory,
-    recurse => true,
-    purge   => true,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-  }
-
-  file { '/etc/nrpe.d/general.cfg':
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    source  => 'puppet:///modules/secc_nrpe/etc/nrpe.d/general.cfg',
-    require => File['/etc/nrpe.d/'],
   }
 
   file { '/var/run/nrpe':

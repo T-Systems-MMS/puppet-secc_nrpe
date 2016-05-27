@@ -13,8 +13,8 @@ provisioner:
   require_chef_for_busser: false
   http_proxy: http://proxy.mms-dresden.de:8080
   https_proxy: http://proxy.mms-dresden.de:8080
-  # certificate 
-  librarian_puppet_ssl_file: 'C:/Users/rkno/Documents/GitHub/secc_nrpe/cacert.pem'
+  # certificate
+  librarian_puppet_ssl_file: 'C:/Users/crgr/Documents/GitHub/secc_nrpe/cacert.pem'
 
 platforms:
 - name: centos7
@@ -26,32 +26,32 @@ platforms:
     provision: true
     vagrantfile_erb: Vagrantfile.erb
 
-#- name: rhel7
-#  driver_plugin: vagrant
-#  driver:
-#    box: rhel7
-#    box_check_update: true
-#    box_url: file:///H:/vagrantboxes/packer-rhel7-virtualbox-iso.box
-#    provision: true
-#    vagrantfile_erb: Vagrantfile.erb
-#
-#- name: centos6
-#  driver_plugin: vagrant
-#  driver:
-#    box: centos6
-#    box_check_update: true
-#    box_url: file:///H:/vagrantboxes/packer-centos6-virtualbox-iso.box
-#    provision: true
-#    vagrantfile_erb: Vagrantfile.erb
-#
-#- name: rhel6
-#  driver_plugin: vagrant
-#  driver:
-#    box: rhel6
-#    box_check_update: true
-#    box_url: file:///H:/vagrantboxes/packer-rhel6-virtualbox-iso.box
-#    provision: true
-#    vagrantfile_erb: Vagrantfile.erb
+- name: rhel7
+  driver_plugin: vagrant
+  driver:
+    box: rhel7
+    box_check_update: true
+    box_url: file:///H:/vagrantboxes/packer-rhel7-virtualbox-iso.box
+    provision: true
+    vagrantfile_erb: Vagrantfile.erb
+
+- name: centos6
+  driver_plugin: vagrant
+  driver:
+    box: centos6
+    box_check_update: true
+    box_url: file:///H:/vagrantboxes/packer-centos6-virtualbox-iso.box
+    provision: true
+    vagrantfile_erb: Vagrantfile.erb
+
+- name: rhel6
+  driver_plugin: vagrant
+  driver:
+    box: rhel6
+    box_check_update: true
+    box_url: file:///H:/vagrantboxes/packer-rhel6-virtualbox-iso.box
+    provision: true
+    vagrantfile_erb: Vagrantfile.erb
 
 suites:
  - name: rhel7_centos7
@@ -61,7 +61,7 @@ suites:
    excludes:
      - rhel6
      - centos6
- 
+
  - name: rhel6_centos6
    sudo: false
    verifier:
@@ -76,6 +76,6 @@ suites:
   # anpassung: C:\Ruby22\lib\ruby\gems\2.2.0\gems\test-kitchen-1.4.2\support\busser_install_command.sh:
   # export PATH="/usr/local/rvm/gems/ruby-1.9.3-p551/bin:/usr/local/rvm/gems/ruby-1.9.3-p551@global/bin:/usr/local/rvm/rubies/ruby-1.9.3-p551/bin:/usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
   #ruby_bindir: '/usr/local/rvm/rubies/ruby-1.9.3-p551/bin/'
-  
+
   #centos7 and rhel7
   #ruby_bindir: '/bin/'

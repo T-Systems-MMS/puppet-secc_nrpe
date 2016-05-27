@@ -45,7 +45,6 @@ The module covers everything that needs to be done to run NRPE.
 ### Setup Requirements **OPTIONAL**
 
 * 'yum' must be able to install the package 'nrpe' without '--enablerepo'
-* class 'sudoers' must be available
 
 ### Beginning with [nrpe]
 

@@ -1,5 +1,5 @@
 {
-  "author": "jans",
+  "author": "crgr",
   "dependencies": [ {"name":"puppetlabs/stdlib"} ],
   "license": "",
   "name": "secc_nrpe",
@@ -9,5 +9,5 @@
   "source": "",
   "summary": "",
   "tags": [],
-  "version": "0.1"
+  "version": "1.0.0"
 }

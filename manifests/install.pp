@@ -1,8 +1,11 @@
-class secc_nrpe::install {
+class secc_nrpe::install(
+  $epelreponame,
+) {
 
   package { 'nrpe':
     ensure => installed,
     alias  => 'nrpe',
+    install_options => ['--enablerepo', "${epelreponame}"],
   }
 
   file { '/home/nrpe/':
@@ -12,18 +15,6 @@ class secc_nrpe::install {
     mode    => '0755',
     recurse => true,
     purge   => true,
-  }
-
-  file { '/home/nrpe/bin/':
-    ensure  => directory,
-    owner   => 'nrpe',
-    group   => 'nrpe',
-    mode    => '0750',
-    recurse => true,
-    purge   => true,
-    force   => true,
-    source  => 'puppet:///modules/secc_nrpe/home/nrpe/bin',
-    require => File['/home/nrpe/'],
   }
 
 }
