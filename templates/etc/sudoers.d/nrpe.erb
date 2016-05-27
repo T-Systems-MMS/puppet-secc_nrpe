@@ -1,0 +1,5 @@
+Defaults:nrpe !requiretty
+<% if nrpe_must_be_root == true%>
+Cmnd_Alias NRPE_WILDCARD = /home/nrpe/bin/check_*
+nrpe ALL=(root) NOPASSWD: NRPE_WILDCARD
+<% end %>
