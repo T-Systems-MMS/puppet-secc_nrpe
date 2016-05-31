@@ -46,23 +46,19 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 ## Usage
 
 * nrpe.cfg wird in '/etc/nagios/' abgelegt
-    * ```
-    require => Class['nrpe'],
-    notify  => Class['nrpe::service'],
-    ```
 * nrpe wird in /etc/sudoers.d/ abgelegt (Sollte der NRPE User Checks als Root ausführen müssen, muss der Parameter nrpe_must_be_root = true gesetzt werden.)
 * Defaultparameter:
 ```
-  $epelreponame         = 'epel',
-  $server_address       = undef,
-  $setServerAddress     = true,
-  $server_port          = "5666",
-  $allowed_hosts        = ["127.0.0.1,","172.29.70.2"],
-  $nrpe_user            = "nrpe",
-  $nrpe_group           = "nrpe",
-  $nrpe_must_be_root    = false,
-  $admininterface_xen0  = 'xenbr0',
-  $admininterface_nr    = '0',
+--  $epelreponame         = 'epel',
+--  $server_address       = undef,
+--  $setServerAddress     = true,
+--  $server_port          = "5666",
+--  $allowed_hosts        = ["127.0.0.1,","172.29.70.2"],
+--  $nrpe_user            = "nrpe",
+--  $nrpe_group           = "nrpe",
+--  $nrpe_must_be_root    = false,
+--  $admininterface_xen0  = 'xenbr0',
+--  $admininterface_nr    = '0',
 ```
 * Wenn server_address nicht definiert ist, wird die IP des Standard Interfaces als server_address gesetzt.
 * Das Modul kann via Puppetfile eingebunden werden.
