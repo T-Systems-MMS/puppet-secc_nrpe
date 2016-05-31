@@ -6,7 +6,7 @@
 
 log_facility=daemon
 pid_file=/var/run/nrpe/nrpe.pid
-server_address=<% if @server_address != "undef"%><%= @server_address.each do |val| %><%= val %><% end %><% else %><%= @ipaddress %><% end %>
+server_address=<% if @adminip -%><%= @adminip %><% else -%><% @server_address.each do |val| %><%= val %><% end %><% end %>
 server_port=<%= @server_port %>
 nrpe_user=<%= @nrpe_user %>
 nrpe_group=<%= @nrpe_group %>
