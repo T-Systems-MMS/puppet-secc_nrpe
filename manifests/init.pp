@@ -1,7 +1,7 @@
 # SecC NRPE Config
 class secc_nrpe(
   $epelreponame         = 'epel',
-  $server_address       = [undef],
+  $server_address       = [ undef ],
   $setServerAddress     = true,
   $server_port          = "5666",
   $allowed_hosts        = ["127.0.0.1,","172.29.70.2"],

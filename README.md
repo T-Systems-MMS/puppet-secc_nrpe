@@ -1,4 +1,4 @@
-# nrpe
+# AMCS SecC - NRPE Module
 
 #### Table of Contents
 
@@ -15,48 +15,61 @@
 
 ## Overview
 
-This module installs, configures and starts NRPE.
-It provides all check scripts and global permissions (for monitoring).
+Diese Modul installiert und konfiguriert den NRPE Service. 
 
 ## Module Description
 
-NRPE is used to remotely execute scripts on a server running it, so your monitoring solution (e.g. Nagios) can check things, that cannot be read from 'the outside'.
-The module covers everything that needs to be done to run NRPE.
+Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus definiert es den zu nutzenden User (nrpe) und legt ein nrpe-File in /etc/sudoers.d/ an.
 
 ## Setup
 
 ### What [nrpe] affects
 
-1. Files
-    * '/home/nrpe/bin/'
-        * currently set to 'remote' > the module will ensure presence of files known but will not delete additional files
+1. Templates
     * '/etc/nagios/nrpe.cfg'
-    * '/etc/nrpe.d/'
-        * **WARNING**: Configurations that are NOT managed by Puppet will be purged
-    * '/etc/nrpe.d/general.cfg'
     * '/etc/sudoers.d/nrpe'
 1. Packages
-    * 'nrpe' ( requires EPEL to be accessible )
+    * 'nrpe' (EPEL Repo muss vorhanden sein. Defaultwert für den Reponame ist 'epel'.)
 1. Services
-    * 'nrpe' ( will be restarted on configuration change )
+    * 'nrpe' (Der Service wird neugestartet wenn sich Konfigurtionen ändern.)
 1. User / Gruppen
     * 'nrpe'
+    * 'nagios' 
 
 ### Setup Requirements **OPTIONAL**
 
 
 ### Beginning with [nrpe]
 
-* For basic NRPE functionality simply include the main class
+* Für die Grundfunktionalität von NRPE muss die Main Class inkludiert werden.
 
 ## Usage
 
-* new check scripts to be stored under '/home/nrpe/bin/' go in 'files/home/nrpe/bin/'
-* when adding a NRPE configuration file under '/etc/nrpe.d/' from within another module be sure to require the main class and notify the service class
+* nrpe.cfg wird in '/etc/nagios/' abgelegt
     * ```
     require => Class['nrpe'],
     notify  => Class['nrpe::service'],
     ```
+* nrpe wird in /etc/sudoers.d/ abgelegt (Sollte der NRPE User Checks als Root ausführen müssen, muss der Parameter nrpe_must_be_root = true gesetzt werden.)
+* Defaultparameter:
+```
+  $epelreponame         = 'epel',
+  $server_address       = undef,
+  $setServerAddress     = true,
+  $server_port          = "5666",
+  $allowed_hosts        = ["127.0.0.1,","172.29.70.2"],
+  $nrpe_user            = "nrpe",
+  $nrpe_group           = "nrpe",
+  $nrpe_must_be_root    = false,
+  $admininterface_xen0  = 'xenbr0',
+  $admininterface_nr    = '0',
+```
+* Wenn server_address nicht definiert ist, wird die IP des Standard Interfaces als server_address gesetzt.
+* Das Modul kann via Puppetfile eingebunden werden.
+
+## Usage ohne Puppet
+
+* Eine Copy&Paste Übernahme in Projekte sollte möglich sein, wurde aber nicht getestet.
 
 ## Reference
 
@@ -70,5 +83,13 @@ The module covers everything that needs to be done to run NRPE.
 1. Facts
 
 ## Limitations
+
+* Modul wurde erfolgreich gegen CentOS6, CentOS7, RHEL6, RHEL7 getestet.
+
 ## Development
+
+* Änderungen am Modul sollten auch im Serverspec amcs_secc_nrpe_spec.rn nachgezogen werden.
+
 ## Release Notes/Contributors/Etc **Optional**
+
+* Initialrelease.
