@@ -36,9 +36,6 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
     * 'nrpe'
     * 'nagios' 
 
-### Setup Requirements **OPTIONAL**
-
-
 ### Beginning with [nrpe]
 
 * Für die Grundfunktionalität von NRPE muss die Main Class inkludiert werden.
@@ -86,6 +83,6 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 
 * Änderungen am Modul sollten auch im Serverspec amcs_secc_nrpe_spec.rn nachgezogen werden.
 
-## Release Notes/Contributors/Etc **Optional**
+## Release Notes/Contributors/Etc
 
 * Initialrelease.
