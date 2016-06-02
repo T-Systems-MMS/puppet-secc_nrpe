@@ -7,14 +7,8 @@ class secc_nrpe::install(
     alias  => 'nrpe',
     install_options => ['--enablerepo', "${epelreponame}"],
   }
-
-  file { '/home/nrpe/':
-    ensure  => directory,
-    owner   => 'nrpe',
-    group   => 'nrpe',
-    mode    => '0755',
-    recurse => true,
-    purge   => true,
+  
+  package { 'nagios-plugins-nrpe':
+    ensure => installed,
   }
-
 }

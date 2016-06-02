@@ -1,6 +1,7 @@
 class secc_nrpe::config(
   $server_address,
   $setServerAddress,
+  $setlocalhost,
   $server_port,
   $allowed_hosts,
   $nrpe_user,
@@ -10,7 +11,7 @@ class secc_nrpe::config(
   
 ) {
   
-  if ( $setServerAddress) {
+  if  $setServerAddress and $server_address == [undef] {
     if ( $::virtual == 'xen0' ) {
       $string = "@ipaddress_${admininterface_xen0}"
       $adminip = inline_template("<%= ${string} %>")
@@ -20,6 +21,15 @@ class secc_nrpe::config(
       $string = "@ipaddress_${ifs[$admininterface_nr]}"
       $adminip = inline_template("<%= ${string} %>")
     }
+  }
+  
+  file { '/home/nrpe/':
+    ensure  => directory,
+    owner   => 'nrpe',
+    group   => 'nrpe',
+    mode    => '0755',
+    recurse => true,
+    purge   => true,
   }
 
   file { '/etc/nagios/':

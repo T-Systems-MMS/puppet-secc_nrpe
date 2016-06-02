@@ -10,7 +10,7 @@ server_address=<% if @adminip -%><%= @adminip %><% else -%><% @server_address.ea
 server_port=<%= @server_port %>
 nrpe_user=<%= @nrpe_user %>
 nrpe_group=<%= @nrpe_group %>
-allowed_hosts=<% @allowed_hosts.each do |val| %><%= val %><% end %>
+allowed_hosts=<% if @adminip -%><%= @adminip %><% end %>,<% @allowed_hosts.each do |val| %><%= val %><% end %><% if @setlocalhost %>,127.0.0.1<% end %>
 dont_blame_nrpe=0
 debug=0
 command_timeout=60

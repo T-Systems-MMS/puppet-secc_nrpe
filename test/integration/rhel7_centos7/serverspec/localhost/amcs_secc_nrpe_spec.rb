@@ -1,4 +1,7 @@
 require 'spec_helper'
+    
+    cmd = "grep server_address /etc/nagios/nrpe.cfg | cut -c16-31"
+    ipaddress = `#{cmd}`
 
 	describe user('nrpe') do
   		it { should exist }
@@ -23,6 +26,10 @@ require 'spec_helper'
 	describe service ('nrpe') do
 		it { should be_enabled }
 		it { should be_running }
+	end
+	
+	describe command("/usr/lib64/nagios/plugins/check_nrpe -H #{ipaddress}") do
+			its(:stdout) { should match /^NRPE v2.15$/ }
 	end
 	
 	describe file('/etc/nagios/') do
@@ -60,7 +67,6 @@ require 'spec_helper'
 		its(:content) { should match /^server\_port\=5666$/ }
 		its(:content) { should match /^nrpe\_user\=nrpe$/ }
 		its(:content) { should match /^nrpe\_group\=nrpe$/ }
-		its(:content) { should match /^allowed\_hosts\=(\d\d\d|\d\d|\d).(\d\d\d|\d\d|\d).(\d\d\d|\d\d|\d).(\d\d\d|\d\d|\d)\,(\d\d\d|\d\d|\d).(\d\d\d|\d\d|\d).(\d\d\d|\d\d|\d).(\d\d\d|\d\d|\d)$/ }
 		its(:content) { should match /^dont\_blame\_nrpe\=\d$/ }
 		its(:content) { should match /^debug\=\d$/ }
 		its(:content) { should match /^command\_timeout\=\d\d$/ }
