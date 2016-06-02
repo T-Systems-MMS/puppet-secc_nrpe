@@ -46,7 +46,7 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 * nrpe.cfg wird in '/etc/nagios/' abgelegt
 * nrpe wird in /etc/sudoers.d/ abgelegt (Sollte der NRPE User Checks als Root ausführen müssen, muss der Parameter nrpe_must_be_root = true gesetzt werden.)
 * sollte 127.0.0.1 mit also allowed_host in der nrpe.cfg auftauchen muss setlocalhost = true sein
-* wenn eine andere IP Adresse als eth0 oder enp0s3 als server_address in der nrpe.cfg gewünscht sein, muss  diese in server_address = [undef] definiert werden
+* wenn eine andere IP Adresse als eth0 oder enp0s3 als server_address in der nrpe.cfg gewünscht ist, muss  diese in server_address = [undef] definiert werden
 * Defaultparameter:
 ```
   $epelreponame         = 'epel',
