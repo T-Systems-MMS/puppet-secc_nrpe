@@ -63,6 +63,7 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 ```
 * Wenn server_address nicht definiert ist, wird die IP des Standard Interfaces als server_address gesetzt.
 * Das Modul kann via Puppetfile eingebunden werden.
+* Der SSL Handshake kann mit dem Kommando /usr/lib64/nagios/plugins/check_nrpe <IP> überprüft werden (Ergbnis NRPEvXX)
 
 ## Usage ohne Puppet
 
