@@ -48,7 +48,6 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 * sollte 127.0.0.1 mit also allowed_host in der nrpe.cfg auftauchen muss setlocalhost = true sein
 * wenn eine andere IP Adresse als eth0 oder enp0s3 als server_address in der nrpe.cfg gewünscht ist, muss  diese in server_address = [undef] definiert werden
 * Defaultparameter:
-```
 	* $epelreponame         = 'epel',
 	* $server_address       = [undef],
 	* $setServerAddress     = true,
@@ -60,7 +59,6 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 	* $nrpe_must_be_root    = false,
 	* $admininterface_xen0  = 'xenbr0',
 	* $admininterface_nr    = '0', 
-```
 * Wenn server_address nicht definiert ist, wird die IP des Standard Interfaces als server_address gesetzt.
 * Das Modul kann via Puppetfile eingebunden werden.
 * Der SSL Handshake kann mit dem Kommando /usr/lib64/nagios/plugins/check_nrpe <IP> überprüft werden (Ergbnis NRPEvXX)
@@ -78,7 +76,6 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
     * secc_nrpe::config
     * secc_nrpe::permissions
     * secc_nrpe::service
-1. Facts
 
 ## Limitations
 
