@@ -5,7 +5,7 @@ class secc_nrpe::install(
   package { 'nrpe':
     ensure => installed,
     alias  => 'nrpe',
-    install_options => ['--enablerepo', "${epelreponame}"],
+    install_options => [ { '--enablerepo' => "${epelreponame}" } ],
   }
   
   package { 'nagios-plugins-nrpe':

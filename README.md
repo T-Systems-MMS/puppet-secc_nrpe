@@ -72,12 +72,12 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 ## Reference
 
 1. Classes
-    * nrpe
-    * nrpe::user
-    * nrpe::install
-    * nrpe::config
-    * nrpe::permissions
-    * nrpe::service
+    * secc_nrpe
+    * secc_nrpe::user
+    * secc_nrpe::install
+    * secc_nrpe::config
+    * secc_nrpe::permissions
+    * secc_nrpe::service
 1. Facts
 
 ## Limitations
@@ -86,8 +86,9 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 
 ## Development
 
-* Änderungen am Modul sollten auch im Serverspec amcs_secc_nrpe_spec.rn nachgezogen werden.
+* Änderungen am Modul sollten auch im Serverspec amcs_secc_nrpe_spec.rb nachgezogen werden.
 
 ## Release Notes/Contributors/Etc
 
 * Initialrelease.
+* 1.0.1 Fix Installation with install_options enablerepo
