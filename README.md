@@ -56,7 +56,9 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 	* $allowed_hosts        = ["172.29.70.2"],
 	* $nrpe_user            = "nrpe",
 	* $nrpe_group           = "nrpe",
-	* $nrpe_must_be_root    = false,
+	* nrpe_must_be_root        = false,
+	* $define_nrpe_custom_root  = false,
+	* $nrpe_custom_root         = [undef],
 	* $admininterface_xen0  = 'xenbr0',
 	* $admininterface_nr    = '0', 
 * Wenn server_address nicht definiert ist, wird die IP des Standard Interfaces als server_address gesetzt.

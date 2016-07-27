@@ -3,7 +3,7 @@ class secc_nrpe::service {
   service { 'nrpe':
     ensure    => running,
     enable    => true,
-    subscribe => [ Class['secc_nrpe::config'], Class['secc_nrpe::permissions'] ],
+    subscribe => Class['secc_nrpe::config'],
   }
 
 }
