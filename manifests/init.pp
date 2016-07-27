@@ -1,16 +1,18 @@
 # SecC NRPE Config
 class secc_nrpe(
-  $epelreponame         = 'epel',
-  $server_address       = [undef],
-  $setServerAddress     = true,
-  $setlocalhost         = false,
-  $server_port          = "5666",
-  $allowed_hosts        = ["172.29.70.2"],
-  $nrpe_user            = "nrpe",
-  $nrpe_group           = "nrpe",
-  $nrpe_must_be_root    = false,
-  $admininterface_xen0  = 'xenbr0',
-  $admininterface_nr    = '0',
+  $epelreponame             = 'epel',
+  $server_address           = [undef],
+  $setServerAddress         = true,
+  $setlocalhost             = false,
+  $server_port              = "5666",
+  $allowed_hosts            = ["172.29.70.2"],
+  $nrpe_user                = 'nrpe',
+  $nrpe_group               = 'nrpe',
+  $nrpe_must_be_root        = false,
+  $define_nrpe_custom_root  = false,
+  $nrpe_custom_root         = [undef],
+  $admininterface_xen0      = 'xenbr0',
+  $admininterface_nr        = '0',
     
 ) {
   
@@ -33,7 +35,9 @@ class secc_nrpe(
   include secc_nrpe::user
 
   class { 'secc_nrpe::permissions':
-    nrpe_must_be_root => $nrpe_must_be_root,
+    nrpe_must_be_root         => $nrpe_must_be_root,
+    define_nrpe_custom_root   => $define_nrpe_custom_root,
+    nrpe_custom_root          => $nrpe_custom_root,
   }
 
   include secc_nrpe::service
