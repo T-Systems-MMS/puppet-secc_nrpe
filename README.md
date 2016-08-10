@@ -47,6 +47,8 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 * nrpe wird in /etc/sudoers.d/ abgelegt (Sollte der NRPE User Checks als Root ausführen müssen, muss der Parameter nrpe_must_be_root = true gesetzt werden.)
 * sollte 127.0.0.1 mit also allowed_host in der nrpe.cfg auftauchen muss setlocalhost = true sein
 * wenn eine andere IP Adresse als eth0 oder enp0s3 als server_address in der nrpe.cfg gewünscht ist, muss  diese in server_address = [undef] definiert werden
+* wenn als server_address zwei IP Adressen benötigt werden (mehrere NW Interfaces oder VIP) muss die in der Form ['IP,','IP'] oder ['IP',',','IP'] angegeben werden
+* wenn die IP von server_address auch als allowed_host auftauchen soll muss diese auch angegeben werden in der From ['IP,','172.29.70.2']
 * Defaultparameter:
 	* $epelreponame         = 'epel',
 	* $server_address       = [undef],
