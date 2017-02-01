@@ -15,7 +15,7 @@
 
 ## Overview
 
-Diese Modul installiert und konfiguriert den NRPE Service. 
+Diese Modul installiert und konfiguriert den NRPE Service.
 
 ## Module Description
 
@@ -35,11 +35,11 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
     * 'nrpe' (Der Service wird neugestartet wenn sich Konfigurtionen ändern.)
 1. User / Gruppen
     * 'nrpe'
-    * 'nagios' 
+    * 'nagios'
 
 ### Beginning with [nrpe]
 
-* Für die Grundfunktionalität von NRPE muss die Main Class inkludiert werden.
+* Für die Grundfunktionalität von NRPE muss die Main Class inkludiert werden, sowie sudo installiert sein.
 
 ## Usage
 
