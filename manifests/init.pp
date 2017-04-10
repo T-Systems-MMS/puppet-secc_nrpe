@@ -1,11 +1,11 @@
 # SecC NRPE Config
 class secc_nrpe(
   $epelreponame             = 'epel',
-  $server_address           = [undef],
+  $server_address           = '0.0.0.0',
   $setServerAddress         = true,
   $setlocalhost             = false,
   $server_port              = "5666",
-  $allowed_hosts            = ["172.29.70.2"],
+  $allowed_hosts            = [ '172.29.70.2' ],
   $nrpe_user                = 'nrpe',
   $nrpe_group               = 'nrpe',
   $nrpe_must_be_root        = false,
@@ -13,13 +13,13 @@ class secc_nrpe(
   $nrpe_custom_root         = [undef],
   $admininterface_xen0      = 'xenbr0',
   $admininterface_nr        = '0',
-    
+
 ) {
-  
+
   class { 'secc_nrpe::install':
     epelreponame    => $epelreponame,
   }
-  
+
   class { 'secc_nrpe::config':
     server_address      => $server_address,
     setServerAddress    => $setServerAddress,
