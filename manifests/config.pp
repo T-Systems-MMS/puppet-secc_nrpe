@@ -8,10 +8,10 @@ class secc_nrpe::config(
   $nrpe_group,
   $admininterface_xen0,
   $admininterface_nr,
-  
+
 ) {
-  
-  if  $setServerAddress and $server_address == [undef] {
+
+  if  $setServerAddress and $server_address == '0.0.0.0' {
     if ( $::virtual == 'xen0' ) {
       $string = "@ipaddress_${admininterface_xen0}"
       $adminip = inline_template("<%= ${string} %>")
@@ -22,7 +22,11 @@ class secc_nrpe::config(
       $adminip = inline_template("<%= ${string} %>")
     }
   }
-  
+
+  if ! empty($allowed_hosts) {
+    $_allowed_hosts = join($allowed_hosts, ",")
+  }
+
   file { '/home/nrpe/':
     ensure  => directory,
     owner   => 'nrpe',
@@ -49,6 +53,7 @@ class secc_nrpe::config(
     group   => 'root',
     mode    => '0644',
     require => File['/etc/nagios/'],
+    notify => Service['nrpe'],
   }
 
   file { '/var/run/nrpe':
@@ -57,5 +62,5 @@ class secc_nrpe::config(
     group  => 'nrpe',
     mode   => '0755',
   }
-  
+
  }
