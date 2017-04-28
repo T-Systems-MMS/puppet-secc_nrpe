@@ -1,9 +1,9 @@
 Defaults:nrpe !requiretty
-<% if @nrpe_must_be_root == true %>
+<% if scope['::secc_nrpe::nrpe_must_be_root'] %>
 Cmnd_Alias NRPE_WILDCARD = /home/nrpe/bin/check_*
 nrpe ALL=(root) NOPASSWD: NRPE_WILDCARD
 <% end %>
-<% if @define_nrpe_custom_root == true %>
-<% @nrpe_custom_root.each do |val| %><%= val%>
+<% if scope['::secc_nrpe::define_nrpe_custom_root'] %>
+<% scope['::secc_nrpe::nrpe_custom_root'].each do |val| %><%= val%>
 <% end %>
 <% end %>

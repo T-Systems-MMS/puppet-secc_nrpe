@@ -1,13 +1,22 @@
 {
   "author": "crgr",
-  "dependencies": [ {"name":"puppetlabs/stdlib"} ],
+  "dependencies": [
+    {
+      "name":"puppetlabs/stdlib"
+    }
+  ],
   "license": "",
   "name": "secc_nrpe",
-  "operatingsystem_support": [ "RHEL6", "RHEL7", "CentOS6", "CentOS7" ],
+  "operatingsystem_support": [
+    "RHEL6",
+    "RHEL7",
+    "CentOS6",
+    "CentOS7"
+  ],
   "project_page": "",
   "requirements": [],
   "source": "",
-  "summary": "",
+  "summary": "Dieses Modul bietet eine teilweise Abdeckung der SoC Anforderungen für NRPE unter Linux.",
   "tags": [],
-  "version": "1.1.0"
+  "version": "2.0.0"
 }

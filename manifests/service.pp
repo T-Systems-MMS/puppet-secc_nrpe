@@ -1,9 +1,11 @@
 class secc_nrpe::service {
 
   service { 'nrpe':
-    ensure    => running,
-    enable    => true,
-    subscribe => [ Class['secc_nrpe::config'], Class['secc_nrpe_checks::config']]
+    ensure     => running,
+    hasrestart => true,
+    hasstatus  => true,
+    enable     => true,
+    require    => Class['secc_nrpe::install'],
   }
 
 }
