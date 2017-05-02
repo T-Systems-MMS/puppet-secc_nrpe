@@ -1,8 +1,4 @@
-class secc_nrpe::permissions(
-  $nrpe_must_be_root,
-  $define_nrpe_custom_root,
-  $nrpe_custom_root,
-) {
+class secc_nrpe::permissions {
 
   file { '/etc/sudoers.d/nrpe':
     ensure   => present,

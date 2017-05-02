@@ -45,31 +45,11 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 
 * nrpe.cfg wird in '/etc/nagios/' abgelegt
 * nrpe wird in /etc/sudoers.d/ abgelegt (Sollte der NRPE User Checks als Root ausführen müssen, muss der Parameter nrpe_must_be_root = true gesetzt werden.)
-* sollte 127.0.0.1 mit also allowed_host in der nrpe.cfg auftauchen muss setlocalhost = true sein
-* wenn eine andere IP Adresse als eth0 oder enp0s3 als server_address in der nrpe.cfg gewünscht ist, muss  diese in server_address = [undef] definiert werden
-* wenn als server_address zwei IP Adressen benötigt werden (mehrere NW Interfaces oder VIP) muss die in der Form ['IP,','IP'] oder ['IP',',','IP'] angegeben werden
-* wenn die IP von server_address auch als allowed_host auftauchen soll muss diese auch angegeben werden in der From ['IP,','172.29.70.2']
-* Defaultparameter:
-	* $epelreponame         = 'epel',
-	* $server_address       = [undef],
-	* $setServerAddress     = true,
-	* $setlocalhost         = false,
-	* $server_port          = "5666",
-	* $allowed_hosts        = ["172.29.70.2"],
-	* $nrpe_user            = "nrpe",
-	* $nrpe_group           = "nrpe",
-	* nrpe_must_be_root        = false,
-	* $define_nrpe_custom_root  = false,
-	* $nrpe_custom_root         = [undef],
-	* $admininterface_xen0  = 'xenbr0',
-	* $admininterface_nr    = '0', 
-* Wenn server_address nicht definiert ist, wird die IP des Standard Interfaces als server_address gesetzt.
+* `127.0.0.1` und `172.29.70.2` wird standardmaessig als `allowed_hosts` in der nrpe.cfg eingetragen
+* sollen weitere Hosts in die `allowed_hosts` eingetragen werden, muss dies in einer Liste geschehen, z.B. ``allowed_hosts  => ['127.0.0.1', '192.168.0.1']
+* Wenn server_address nicht definiert ist, wird die IP des Standard Interfaces (puppet-fact `ipaddress`) als server_address gesetzt
 * Das Modul kann via Puppetfile eingebunden werden.
 * Der SSL Handshake kann mit dem Kommando /usr/lib64/nagios/plugins/check_nrpe <IP> überprüft werden (Ergbnis NRPEvXX)
-
-## Usage ohne Puppet
-
-* Eine Copy&Paste Übernahme in Projekte sollte möglich sein, wurde aber nicht getestet.
 
 ## Reference
 

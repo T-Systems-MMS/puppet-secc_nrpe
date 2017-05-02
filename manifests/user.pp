@@ -1,29 +1,29 @@
 class secc_nrpe::user {
 
-  user { 'nrpe':
+  user { $::secc_nrpe::nrpe_user :
     ensure     => 'present',
-    gid        => 'nrpe',
+    gid        => $::secc_nrpe::nrpe_user,
     comment    => 'NRPE user for the NRPE service',
     shell      => '/sbin/nologin',
-    home       => '/home/nrpe',
+    home       => "/home/${::secc_nrpe::nrpe_user}",
     managehome => true,
-    require    => Package['nrpe'],
+    require    => Class['secc_nrpe::install'],
   }
 
-  group { 'nrpe':
+  group { $::secc_nrpe::nrpe_group :
     ensure  => 'present',
-    name    => 'nrpe',
-    require => User['nrpe'],
+    name    => $::secc_nrpe::nrpe_group,
+    require => User[$::secc_nrpe::nrpe_user],
   }
 
   # ensure security for dependency user nagios
   user { 'nagios':
-    ensure            => 'present',
-    home              => '/var/spool/nagios',
-    password          => '!!',
-    password_min_age  => '-1',
-    password_max_age  => '-1',
-    shell             => '/sbin/nologin',
-    require           => Package['nrpe'],
+    ensure           => 'present',
+    home             => '/var/spool/nagios',
+    password         => '!!',
+    password_min_age => '-1',
+    password_max_age => '-1',
+    shell            => '/sbin/nologin',
+    require          => Class['secc_nrpe::install'],
   }
 }
