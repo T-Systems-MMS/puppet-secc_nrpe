@@ -5,6 +5,7 @@ class secc_nrpe::params (
   $allowed_hosts           = ['127.0.0.1', '172.29.70.2'],
   $nrpe_user               = 'nrpe',
   $nrpe_group              = 'nrpe',
+  $nrpe_homedir            = '/home/nrpe',
   $nrpe_must_be_root       = false,
   $define_nrpe_custom_root = false,
   $nrpe_custom_root        = [undef],

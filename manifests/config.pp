@@ -1,6 +1,6 @@
 class secc_nrpe::config {
 
-  file { '/home/nrpe/':
+  file { $::secc_nrpe::nrpe_homedir:
     ensure  => directory,
     owner   => $::secc_nrpe::nrpe_user,
     group   => $::secc_nrpe::nrpe_group,
