@@ -5,7 +5,6 @@ class secc_nrpe::service {
     hasrestart => true,
     hasstatus  => true,
     enable     => true,
-    require    => Class['secc_nrpe::install'],
   }
 
 }

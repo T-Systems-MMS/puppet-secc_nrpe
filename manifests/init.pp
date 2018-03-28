@@ -14,8 +14,10 @@ class secc_nrpe(
 
   $_allowed_hosts = join($allowed_hosts, ',')
 
-  Class['secc_nrpe::install'] -> Class['secc_nrpe::user']
-  Class['secc_nrpe::install'] -> Class['secc_nrpe::config'] ~> Class['secc_nrpe::service']
+  Class['secc_nrpe::install']
+  -> Class['secc_nrpe::user']
+  -> Class['secc_nrpe::config']
+  ~> Class['secc_nrpe::service']
 
   contain secc_nrpe::install
   contain secc_nrpe::config

@@ -16,7 +16,6 @@ class secc_nrpe::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    require => Class['secc_nrpe::install']
   }
 
   file { '/etc/nagios/nrpe.cfg':
@@ -26,7 +25,6 @@ class secc_nrpe::config {
     group   => 'root',
     mode    => '0644',
     require => File['/etc/nagios/'],
-    notify  => Service['nrpe'],
   }
 
   file { '/var/run/nrpe':
