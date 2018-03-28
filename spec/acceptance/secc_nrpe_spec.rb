@@ -3,7 +3,7 @@ require 'spec_helper_acceptance'
 describe 'Class secc_nrpe' do
   context 'with default nrpe config' do
 
-    command("service nrpe stop")
+    command("/sbin/service nrpe stop")
 
     let(:manifest) {
     <<-EOS
