@@ -3,13 +3,12 @@ require 'spec_helper_acceptance'
 describe 'Class secc_nrpe' do
   context 'with custom settings' do
 
-    command("service nrpe stop")
-
     let(:manifest) {
     <<-EOS
       class { 'secc_nrpe':
         server_address => '127.0.0.1',
-        allowed_hosts  => ['127.0.0.1', '127.0.0.2']
+        allowed_hosts  => ['127.0.0.1', '127.0.0.2'],
+        nrpe_homedir   => '/opt/monitoring',
       }
     EOS
     }
@@ -20,6 +19,19 @@ describe 'Class secc_nrpe' do
 
     it 'should re-run without changes' do
       expect(apply_manifest(manifest, :catch_changes => true).exit_code).to be_zero
+    end
+
+    describe user('nrpe') do
+      it { should exist }
+      it { should have_home_directory '/opt/monitoring' }
+      it { should have_login_shell '/sbin/nologin' }
+    end
+
+    describe file('/opt/monitoring') do
+      it { is_expected.to be_directory }
+      it { is_expected.to be_owned_by 'nrpe' }
+      it { is_expected.to be_grouped_into 'nrpe' }
+      it { is_expected.to be_mode 755 }
     end
 
     describe file('/etc/nagios/nrpe.cfg') do

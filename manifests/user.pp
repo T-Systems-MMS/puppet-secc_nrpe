@@ -5,9 +5,8 @@ class secc_nrpe::user {
     gid        => $::secc_nrpe::nrpe_user,
     comment    => 'NRPE user for the NRPE service',
     shell      => '/sbin/nologin',
-    home       => "/home/${::secc_nrpe::nrpe_user}",
+    home       => $::secc_nrpe::nrpe_homedir,
     managehome => true,
-    require    => Class['secc_nrpe::install'],
   }
 
   group { $::secc_nrpe::nrpe_group :
@@ -24,6 +23,5 @@ class secc_nrpe::user {
     password_min_age => '-1',
     password_max_age => '-1',
     shell            => '/sbin/nologin',
-    require          => Class['secc_nrpe::install'],
   }
 }

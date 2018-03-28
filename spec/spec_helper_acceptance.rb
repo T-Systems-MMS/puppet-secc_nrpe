@@ -10,6 +10,12 @@ RSpec.configure do |c|
     c2.syntax = :expect
   end
 
+  c.before :all do
+    hosts.each do |host|
+      on(host, "service nrpe stop || exit 0")
+    end
+  end
+
   c.before :suite do
     # Install module to all hosts
     hosts.each do |host|
