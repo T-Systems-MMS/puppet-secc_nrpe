@@ -82,6 +82,7 @@ describe 'Class secc_nrpe' do
       it { is_expected.to be_owned_by 'root' }
       it { is_expected.to be_grouped_into 'root' }
       its(:content) { is_expected.to match( /^Defaults\:nrpe \!requiretty$/ ) }
+      its(:content) { is_expected.to match( /^nrpe ALL=\(root\) NOPASSWD\: NRPE_WILDCARD$/ ) }
     end
   end
 end
