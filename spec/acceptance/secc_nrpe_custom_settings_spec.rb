@@ -9,6 +9,7 @@ describe 'Class secc_nrpe' do
         server_address => '127.0.0.1',
         allowed_hosts  => ['127.0.0.1', '127.0.0.2'],
         nrpe_homedir   => '/opt/monitoring',
+        nrpe_must_be_root => true,
       }
     EOS
     }
@@ -46,6 +47,15 @@ describe 'Class secc_nrpe' do
       its(:content) { is_expected.to include 'server_port=5666' }
       its(:content) { is_expected.to include 'nrpe_user=nrpe' }
       its(:content) { is_expected.to include 'nrpe_group=nrpe' }
+    end
+
+    describe file('/etc/sudoers.d/nrpe') do
+		  it { is_expected.to exist }
+      it { is_expected.to be_mode 440 }
+      it { is_expected.to be_owned_by 'root' }
+      it { is_expected.to be_grouped_into 'root' }
+      its(:content) { is_expected.to match( /^Defaults\:nrpe \!requiretty$/ ) }
+      its(:content) { is_expected.to match( /^nrpe ALL=\(root\) NOPASSWD\: NRPE_WILDCARD$/ ) }
     end
   end
 end
