@@ -1,4 +1,4 @@
-Defaults:nrpe !requiretty
+Defaults:<%= scope['::secc_nrpe::nrpe_user'] -%> !requiretty
 <% if scope['::secc_nrpe::nrpe_must_be_root'] %>
 Cmnd_Alias NRPE_WILDCARD = <%= scope['::secc_nrpe::nrpe_homedir'] -%>/bin/check_*
 <%= scope['::secc_nrpe::nrpe_user'] -%> ALL=(root) NOPASSWD: NRPE_WILDCARD
