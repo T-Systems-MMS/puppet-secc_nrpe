@@ -1,22 +1,27 @@
 {
-  "author": "crgr",
+  "name": "tsystemsmms-secc_nrpe",
+  "author": "T-Systems Multimedia Solutions GmbH",
+  "version": "2.1.1",
+  "summary": "Dieses Modul bietet eine teilweise Abdeckung der SoC Anforderungen für NRPE unter Linux.",
+  "license": "Apache-2.0",
+  "project_page": "https://github.com/T-Systems-MMS/puppet-secc_nrpe",
+  "source": "https://github.com/T-Systems-MMS/puppet-secc_nrpe",
+  "issues": "https://github.com/T-Systems-MMS/puppet-secc_nrpe/issues",
   "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" }
+  ],
+  "operatingsystem_support": [
     {
-      "name":"puppetlabs/stdlib"
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [ "6", "7" ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [ "6", "7" ]
     }
   ],
-  "license": "",
-  "name": "secc_nrpe",
-  "operatingsystem_support": [
-    "RHEL6",
-    "RHEL7",
-    "CentOS6",
-    "CentOS7"
+  "requirements": [
+    { "name": "puppet", "version_requirement": ">= 3.0.0 < 5.0.0" }
   ],
-  "project_page": "",
-  "requirements": [],
-  "source": "",
-  "summary": "Dieses Modul bietet eine teilweise Abdeckung der SoC Anforderungen für NRPE unter Linux.",
-  "tags": [],
-  "version": "2.1.1"
+  "tags": ["nagios", "nrpe", "monitoring"]
 }

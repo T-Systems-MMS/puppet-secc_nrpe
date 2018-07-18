@@ -1,5 +1,7 @@
 # AMCS SecC - NRPE Module
 
+[![Build Status](https://travis-ci.org/T-Systems-MMS/puppet-secc_nrpe.svg?branch=master)](https://travis-ci.org/T-Systems-MMS/puppet-secc_nrpe)
+
 #### Table of Contents
 
 1. [Overview](#overview)
@@ -63,13 +65,8 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
 
 ## Limitations
 
-* Modul wurde erfolgreich gegen CentOS6, CentOS7, RHEL6, RHEL7 getestet.
+* Modul wurde erfolgreich gegen CentOS6, CentOS7 getestet.
 
 ## Development
 
 * Änderungen am Modul sollten auch im Serverspec amcs_secc_nrpe_spec.rb nachgezogen werden.
-
-## Release Notes/Contributors/Etc
-
-* Initialrelease.
-* 1.0.1 Fix Installation with install_options enablerepo
