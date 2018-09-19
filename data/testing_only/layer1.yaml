@@ -1,0 +1,3 @@
+---
+secc_nrpe::nrpe_custom_root:
+  - 'root ALL = (ALL) ALL'
