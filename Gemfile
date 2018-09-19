@@ -15,7 +15,9 @@ group :acceptance do
   else
     gem 'puppet'
   end
+  gem 'puppet', '< 4.9.0'
   gem 'puppetlabs_spec_helper'
   gem 'puppet-lint', '1.1.0'
   gem 'puppet-syntax'
+  gem 'jwt', '< 2.1.0'
 end
