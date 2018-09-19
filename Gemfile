@@ -10,11 +10,6 @@ group :acceptance do
   gem 'ffaker'
   gem 'highline'
   gem 'rake'
-  if puppetversion = ENV['PUPPET_VERSION']
-    gem 'puppet', puppetversion
-  else
-    gem 'puppet'
-  end
   gem 'puppet', '< 4.9.0'
   gem 'puppetlabs_spec_helper'
   gem 'puppet-lint', '1.1.0'
