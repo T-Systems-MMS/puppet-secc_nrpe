@@ -3,7 +3,7 @@ Defaults:<%= scope['::secc_nrpe::nrpe_user'] -%> !requiretty
 Cmnd_Alias NRPE_WILDCARD = <%= scope['::secc_nrpe::nrpe_homedir'] -%>/bin/check_*
 <%= scope['::secc_nrpe::nrpe_user'] -%> ALL=(root) NOPASSWD: NRPE_WILDCARD
 <% end %>
-<% if scope['::secc_nrpe::define_nrpe_custom_root'] %>
+<% if scope['::secc_nrpe::nrpe_custom_root'] %>
 <% scope['::secc_nrpe::nrpe_custom_root'].each do |val| %><%= val %>
 <% end %>
 <% end %>
