@@ -1,7 +1,7 @@
 {
   "name": "tsystemsmms-secc_nrpe",
   "author": "T-Systems Multimedia Solutions GmbH",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "summary": "Dieses Modul bietet eine teilweise Abdeckung der SoC Anforderungen für NRPE unter Linux.",
   "license": "Apache-2.0",
   "project_page": "https://github.com/T-Systems-MMS/puppet-secc_nrpe",
@@ -21,7 +21,7 @@
     }
   ],
   "requirements": [
-    { "name": "puppet", "version_requirement": ">= 3.0.0 < 5.0.0" }
+    { "name": "puppet", "version_requirement": ">= 4.9.4 < 6.0.0" }
   ],
   "tags": ["nagios", "nrpe", "monitoring"]
 }
