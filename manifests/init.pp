@@ -1,16 +1,15 @@
 # SecC NRPE Config
 class secc_nrpe(
-  $epelreponame             = $::secc_nrpe::params::epelreponame,
-  $server_address           = $::secc_nrpe::params::server_address,
-  $server_port              = $::secc_nrpe::params::server_port,
-  $allowed_hosts            = $::secc_nrpe::params::allowed_hosts,
-  $nrpe_user                = $::secc_nrpe::params::nrpe_user,
-  $nrpe_group               = $::secc_nrpe::params::nrpe_group,
-  $nrpe_homedir             = $::secc_nrpe::params::nrpe_homedir,
-  $nrpe_must_be_root        = $::secc_nrpe::params::nrpe_must_be_root,
-  $define_nrpe_custom_root  = $::secc_nrpe::params::define_nrpe_custom_root,
-  $nrpe_custom_root         = $::secc_nrpe::params::nrpe_custom_root,
-) inherits secc_nrpe::params {
+  String $epelreponame,
+  String $server_address,
+  String $server_port,
+  Array $allowed_hosts,
+  String $nrpe_user,
+  String $nrpe_group,
+  String $nrpe_homedir,
+  Boolean $nrpe_must_be_root,
+  Optional[Array] $nrpe_custom_root = [undef],
+)  {
 
   $_allowed_hosts = join($allowed_hosts, ',')
 

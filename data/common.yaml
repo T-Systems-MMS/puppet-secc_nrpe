@@ -1,0 +1,17 @@
+---
+lookup_options:
+  secc_nrpe::nrpe_custom_root:
+    merge:
+      strategy: unique
+
+secc_nrpe::epelreponame: 'epel'
+secc_nrpe::server_address: "%{ipaddress}"
+secc_nrpe::server_port: '5666'
+secc_nrpe::allowed_hosts:
+  - '127.0.0.1'
+  - '172.29.70.2'
+secc_nrpe::nrpe_user: 'nrpe'
+secc_nrpe::nrpe_group: 'nrpe'
+secc_nrpe::nrpe_homedir: '/home/nrpe'
+secc_nrpe::nrpe_must_be_root: false
+secc_nrpe::nrpe_custom_root: []

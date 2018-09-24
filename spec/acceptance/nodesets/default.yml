@@ -7,4 +7,6 @@ HOSTS:
     hypervisor: vagrant
 CONFIG:
   type: foss
+  host_env:
+    FACTER_testfact: testing_only
   package_proxy: http://proxy.mms-dresden.de:8080

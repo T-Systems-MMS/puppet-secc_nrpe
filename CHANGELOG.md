@@ -2,6 +2,19 @@
 
 ## [UNRELEASED]
 
+## [3.0.0] - 2018-09-19
+### Added
+* set merge behavior for nrpe_custom_root
+* set parameters with in module hiera 5
+* jwt gem
+* datatypes for parameters in init.pp
+
+### Removed
+* params.pp
+* Puppet 3 support
+* parameter define_nrpe_custom_root
+
+
 ## [2.1.1] - 2018-07-18
 ### Added
 * initial public release

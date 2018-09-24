@@ -16,6 +16,8 @@ group :acceptance do
     gem 'puppet'
   end
   gem 'puppetlabs_spec_helper'
+  gem 'beaker-puppet_install_helper'
   gem 'puppet-lint', '1.1.0'
   gem 'puppet-syntax'
+  gem 'jwt', '< 2.1.0'
 end
