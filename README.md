@@ -17,11 +17,11 @@
 
 ## Overview
 
-Diese Modul installiert und konfiguriert den NRPE Service.
+This module provides a partial coverage of the SoC conditions for NRPE under Linux.
 
 ## Module Description
 
-Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus definiert es den zu nutzenden User (nrpe) und legt ein nrpe-File in /etc/sudoers.d/ an.
+This module installs and configures NRPE on a Linux system. Further it will define a separate `nrpe` user and create sudo rules in `/etc/sudoers.d/nrpe`,
 
 ## Setup
 
@@ -31,42 +31,44 @@ Das Modul installiert NRPE und rollt die NRPE Konfiguration aus. Darüber hinaus
     * '/etc/nagios/nrpe.cfg'
     * '/etc/sudoers.d/nrpe'
 1. Packages
-    * 'nrpe' (EPEL Repo muss vorhanden sein. Defaultwert für den Reponame ist 'epel'.)
-    * 'nagios-plugins-nrpe' (check_nrpe -> Test des SSL Handshakes)
+    * 'nrpe' (EPEL Repo has to be installed. Default for reponame is 'epel'.)
+    * 'nagios-plugins-nrpe' (check_nrpe -> Test of SSL handshake)
 1. Services
-    * 'nrpe' (Der Service wird neugestartet wenn sich Konfigurtionen ändern.)
-1. User / Gruppen
+    * 'nrpe' (The service will be restarted on configuration changes.)
+1. User / Groups
     * 'nrpe'
     * 'nagios'
 
 ### Beginning with [nrpe]
 
-* Für die Grundfunktionalität von NRPE muss die Main Class inkludiert werden, sowie sudo installiert sein.
+* for base configuration include the class `secc_nrpe`
+* sudo has to be installed beforehand
 
 ## Usage
 
-* nrpe.cfg wird in '/etc/nagios/' abgelegt
-* nrpe wird in /etc/sudoers.d/ abgelegt (Sollte der NRPE User Checks als Root ausführen müssen, muss der Parameter nrpe_must_be_root = true gesetzt werden.)
-* `127.0.0.1` und `172.29.70.2` wird standardmaessig als `allowed_hosts` in der nrpe.cfg eingetragen
-* sollen weitere Hosts in die `allowed_hosts` eingetragen werden, muss dies in einer Liste geschehen, z.B. ``allowed_hosts  => ['127.0.0.1', '192.168.0.1']
-* Wenn server_address nicht definiert ist, wird die IP des Standard Interfaces (puppet-fact `ipaddress`) als server_address gesetzt
-* Das Modul kann via Puppetfile eingebunden werden.
-* Der SSL Handshake kann mit dem Kommando /usr/lib64/nagios/plugins/check_nrpe <IP> überprüft werden (Ergbnis NRPEvXX)
+* `nrpe.cfg` is placed in `/etc/nagios/`
+* `nrpe` is placed in `/etc/sudoers.d/` 
+* if the NRPE user should  run checks as root, set `nrpe_must_be_root = true`
+* `127.0.0.1` and `172.29.70.2` are default `allowed_hosts` in `nrpe.cfg`
+* if further `allowed_hosts` are needed, these can be specified in a list, eg. `allowed_hosts => ['127.0.0.1', '192.168.0.1']`
+* if `server_address`is unspecified, the default IP (puppet-fact `ipaddress`) is used
+* the SSL handshake can be checked with `/usr/lib64/nagios/plugins/check_nrpe <IP>` (Expected result: NRPEvXX)
 
 ## Reference
 
 1. Classes
-    * secc_nrpe
-    * secc_nrpe::user
-    * secc_nrpe::install
-    * secc_nrpe::config
-    * secc_nrpe::permissions
-    * secc_nrpe::service
+    * `secc_nrpe`
+    * `secc_nrpe::user`
+    * `secc_nrpe::install`
+    * `secc_nrpe::config`
+    * `secc_nrpe::permissions`
+    * `secc_nrpe::service`
 
 ## Limitations
 
-* Modul wurde erfolgreich gegen CentOS6, CentOS7 getestet.
+* This module was tested with CentOS6 and CentOS7
 
 ## Development
 
-* Änderungen am Modul sollten auch im Serverspec amcs_secc_nrpe_spec.rb nachgezogen werden.
+* Please document changes within the module using git commits
+* Execution of tests: `bundler install`, `bundler exec rake`
