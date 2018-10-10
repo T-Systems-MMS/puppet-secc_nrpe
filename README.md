@@ -21,7 +21,7 @@ This module provides a partial coverage of the SoC conditions for NRPE under Lin
 
 ## Module Description
 
-This module installs and configures NRPE on a Linux system. Further it will define a separate `nrpe` user and create sudo rules `/etc/sudoers.d`,
+This module installs and configures NRPE on a Linux system. Further it will define a separate `nrpe` user and create sudo rules in `/etc/sudoers.d/nrpe`,
 
 ## Setup
 
@@ -31,7 +31,7 @@ This module installs and configures NRPE on a Linux system. Further it will defi
     * '/etc/nagios/nrpe.cfg'
     * '/etc/sudoers.d/nrpe'
 1. Packages
-    * 'nrpe' (EPEL Repo hast to be installed. Default for reponame is 'epel'.)
+    * 'nrpe' (EPEL Repo has to be installed. Default for reponame is 'epel'.)
     * 'nagios-plugins-nrpe' (check_nrpe -> Test of SSL handshake)
 1. Services
     * 'nrpe' (The service will be restarted on configuration changes.)
@@ -70,5 +70,5 @@ This module installs and configures NRPE on a Linux system. Further it will defi
 
 ## Development
 
-* Please document changes withing the module using git commits
+* Please document changes within the module using git commits
 * Execution of tests: `bundler install`, `bundler exec rake`
