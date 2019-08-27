@@ -1,7 +1,7 @@
 {
   "name": "tsystemsmms-secc_nrpe",
   "author": "T-Systems Multimedia Solutions GmbH",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "summary": "Dieses Modul bietet eine teilweise Abdeckung der SoC Anforderungen für NRPE unter Linux.",
   "license": "Apache-2.0",
   "project_page": "https://github.com/T-Systems-MMS/puppet-secc_nrpe",

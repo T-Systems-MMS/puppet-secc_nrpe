@@ -2,6 +2,10 @@
 
 ## [UNRELEASED]
 
+## [3.1.0] - 2019-08-27
+### Added
+* make command_timeout configurable
+
 ## [3.0.0] - 2018-09-19
 ### Added
 * set merge behavior for nrpe_custom_root
