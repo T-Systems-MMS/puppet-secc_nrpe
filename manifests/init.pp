@@ -7,6 +7,7 @@ class secc_nrpe(
   String $nrpe_user,
   String $nrpe_group,
   String $nrpe_homedir,
+  Integer $command_timeout,
   Boolean $nrpe_must_be_root,
   Optional[Array] $nrpe_custom_root = [undef],
 )  {

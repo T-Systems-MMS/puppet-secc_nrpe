@@ -14,6 +14,6 @@ nrpe_user=<%= scope['::secc_nrpe::nrpe_user'] %>
 nrpe_group=<%= scope['::secc_nrpe::nrpe_group'] %>
 dont_blame_nrpe=0
 debug=0
-command_timeout=60
+command_timeout=<%= scope['::secc_nrpe::command_timeout'] %>
 connection_timeout=300
 include_dir=/etc/nrpe.d/

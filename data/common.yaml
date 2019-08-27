@@ -12,6 +12,7 @@ secc_nrpe::allowed_hosts:
   - '172.29.70.2'
 secc_nrpe::nrpe_user: 'nrpe'
 secc_nrpe::nrpe_group: 'nrpe'
+secc_nrpe::command_timeout: 60
 secc_nrpe::nrpe_homedir: '/home/nrpe'
 secc_nrpe::nrpe_must_be_root: false
 secc_nrpe::nrpe_custom_root: []
