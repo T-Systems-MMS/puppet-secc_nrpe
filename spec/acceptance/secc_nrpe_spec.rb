@@ -59,6 +59,7 @@ describe 'Class secc_nrpe' do
       its(:content) { is_expected.to include 'server_port=5666' }
       its(:content) { is_expected.to include 'nrpe_user=nrpe' }
       its(:content) { is_expected.to include 'nrpe_group=nrpe' }
+      its(:content) { is_expected.to include 'command_timeout=60' }
       its(:content) { is_expected.to include 'allowed_hosts=127.0.0.1,172.29.70.2' }
     end
 

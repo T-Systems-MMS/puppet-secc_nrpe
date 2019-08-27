@@ -9,6 +9,7 @@ describe 'Class secc_nrpe' do
         server_address => '127.0.0.1',
         allowed_hosts  => ['127.0.0.1', '127.0.0.2'],
         nrpe_homedir   => '/opt/monitoring',
+        command_timeout => 120,
         nrpe_must_be_root => true,
       }
     EOS
@@ -47,6 +48,7 @@ describe 'Class secc_nrpe' do
       its(:content) { is_expected.to include 'server_port=5666' }
       its(:content) { is_expected.to include 'nrpe_user=nrpe' }
       its(:content) { is_expected.to include 'nrpe_group=nrpe' }
+      its(:content) { is_expected.to include 'command_timeout=120' }
     end
 
     describe file('/etc/sudoers.d/nrpe') do
