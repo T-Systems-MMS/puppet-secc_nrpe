@@ -1,5 +1,12 @@
+require 'beaker-pe'
+require 'beaker-puppet'
 require 'beaker-rspec'
+require 'beaker/puppet_install_helper'
+require 'beaker/module_install_helper'
 require 'pry'
+require 'puppet'
+
+configure_type_defaults_on(hosts)
 
 RSpec.configure do |c|
   module_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))

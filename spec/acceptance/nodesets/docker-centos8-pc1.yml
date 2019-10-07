@@ -1,0 +1,17 @@
+HOSTS:
+  centos-80-x64-ag1:
+    roles:
+      - agent
+    platform: el-8-x86_64
+    image: centos:8
+    hypervisor: docker
+    docker_cmd: '["/sbin/init"]'
+    docker_preserve_image: true
+    docker_image_commands:
+      - 'yum install -y epel-release'
+      - 'yum install -y initscripts'
+CONFIG:
+  host_env:
+    FACTER_testfact: testing_only
+  type: aio
+  trace_limit: 1000
