@@ -1,3 +1,14 @@
+require 'beaker'
+
+# monkeypatch ...
+if (ENV["BEAKER_set"] =~ /centos8/)
+  module Beaker
+    module HostPrebuiltSteps
+      UNIX_PACKAGES = ['curl', 'chrony']
+    end
+  end
+end
+
 require 'beaker-pe'
 require 'beaker-puppet'
 require 'beaker-rspec'

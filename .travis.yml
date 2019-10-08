@@ -13,11 +13,11 @@ before_deploy:
 matrix:
   include:
   - rvm: default
-    env: PUPPET_VERSION="~> 4.9" BEAKER_set="docker-centos6-pc1"
+    env: PUPPET_VERSION="~> 4.9" BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_set="docker-centos6-pc1"
   - rvm: default
-    env: PUPPET_VERSION="~> 4.9" BEAKER_set="docker-centos7-pc1"
+    env: PUPPET_VERSION="~> 4.9" BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_set="docker-centos7-pc1"
   - rvm: default
-    env: PUPPET_VERSION="~> 4.9" BEAKER_set="docker-centos8-pc1" DEPLOY_TO_FORGE=yes
+    env: PUPPET_VERSION="~> 4.9" BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_set="docker-centos8-pc1" DEPLOY_TO_FORGE=yes
 deploy:
   provider: puppetforge
   user: tsystemsmms
