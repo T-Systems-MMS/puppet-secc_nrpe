@@ -1,30 +1,45 @@
 ---
+dist: xenial
 language: ruby
-sudo: required
-services:
-  - docker
-bundler_args: --without system_tests
+cache: bundler
+before_install:
+  - bundle -v
+  - rm -f Gemfile.lock
+  - gem update --system $RUBYGEMS_VERSION
+  - gem --version
+  - bundle -v
 script:
-  - gem install bundler
-  - bundle install --path vendor/bundle
-  - bundle exec rake
-before_deploy:
-  - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install puppet -v 5.5.6
+  - 'bundle exec rake $CHECK'
+bundler_args: --without system_tests
+rvm:
+  - 2.5.3
+stages:
+  - static
+  - spec
+  - acceptance
+  -
+    if: tag =~ ^v\d
+    name: deploy
 matrix:
+  fast_finish: true
   include:
-  - rvm: default
-    env: PUPPET_VERSION="~> 4.9" BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_set="docker-centos6-pc1"
-  - rvm: default
-    env: PUPPET_VERSION="~> 4.9" BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_set="docker-centos7-pc1"
-  - rvm: default
-    env: PUPPET_VERSION="~> 4.9" BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_set="docker-centos8-pc1" DEPLOY_TO_FORGE=yes
-deploy:
-  provider: puppetforge
-  user: tsystemsmms
-  password:
-    secure: zH/hkEPri2tUxPE3w35j3bjTHVRgBqDx0Wu5dlOYnwJCOS4VWCI7d7WiVSaOd3IWuB1uNX5iKVKFsiae9viRMq8MMr4raL7zoOrawvUNdQBv6ENEdFYGnyLtrDcMtuwmI5IZAGsoktcbPeuAtD7aeTe7cNh+M1xHpcfH/mSawcZTBIqrc2AFWnawel2H+wMk+T/OfkPR0ZAFps292k246xVpGbGhHJ3MjBO9S5cokMo3WbOqg85D4mVNNYKKtRqTZoetQbhPGoID/mrs+g6WvDW+Mf0AuESjou9U75N6UXAsdhSX626bRRTIF05KWT+Qvaq/elMF45IPeu46Cxc/ZTEKewQy1NQHvlAvCCBOMjYZZh7Nd1JsWJA5VjilPb3amoBIzFNWJmZG7c7ptuteTjIfNlpMzYW/e1LN+DSXkUQMVrHhXR4rgs6Eb9PHZlmA+/jVR1LgqEGsM8QX2W6khs2k1aiQNnAEdglYKdgN+qUwa37DDq9xfacOsZOmJqvApOriAEoRtVkuSxTldvXRETpXm2pRWXoHc47RveeQxo/EkcVGNSC1dN9qZp0UikEl0Ft5CZsO5oZehHlw5+Xs54W/wapvZ3I9Yr+PfGRe60af15qdoMbKuG6+oZN4WVW7ioHEWD6OhaHchZMrVUzz+AA2eQfIxKKp9N8Yt8fLEQU=
-  on:
-    tags: true
-    all_branches: true
-    condition: "$DEPLOY_TO_FORGE = yes"
-
+    -
+      env: CHECK="check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop syntax lint metadata_lint"
+      stage: static
+    -
+      env: PUPPET_GEM_VERSION="~> 5.0" CHECK=parallel_spec
+      rvm: 2.4.5
+      stage: spec
+    -
+      env: PUPPET_GEM_VERSION="~> 6.0" CHECK=parallel_spec
+      rvm: 2.5.3
+      stage: spec
+    -
+      env: DEPLOY_TO_FORGE=yes
+      stage: deploy
+branches:
+  only:
+    - master
+    - /^v\d/
+notifications:
+  email: false
