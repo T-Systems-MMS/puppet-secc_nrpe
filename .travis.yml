@@ -18,7 +18,7 @@ stages:
   - spec
   - acceptance
   -
-    if: tag =~ ^v\d
+    if: tag =~ ^\d+.\d+.\d+
     name: deploy
 matrix:
   fast_finish: true
@@ -43,8 +43,6 @@ matrix:
       before_script:
       - bundle exec rake 'litmus:provision_list[travis_el]'
       - bundle exec bolt command run 'yum install -y epel-release initscripts' --inventoryfile inventory.yaml --nodes='localhost*'
-      # workaround for hanging session
-      #- bundle exec bolt command run 'yum remove less' --inventoryfile inventory.yaml --nodes='localhost*'
       - bundle exec rake 'litmus:install_agent[puppet5]'
       - bundle exec rake litmus:install_module
       script:
@@ -60,8 +58,6 @@ matrix:
       before_script:
       - bundle exec rake 'litmus:provision_list[travis_el]'
       - bundle exec bolt command run 'yum install -y epel-release initscripts'  --inventoryfile inventory.yaml --nodes='localhost*'
-      # workaround for hanging session
-      #- bundle exec bolt command run 'yum remove less' --inventoryfile inventory.yaml --nodes='localhost*'
       - bundle exec rake 'litmus:install_agent[puppet6]'
       - bundle exec rake litmus:install_module
       script:
@@ -71,5 +67,12 @@ matrix:
     -
       env: DEPLOY_TO_FORGE=yes
       stage: deploy
-notifications:
-  email: false
+deploy:
+  provider: puppetforge
+  user: tsystemsmms
+  password:
+    secure: zH/hkEPri2tUxPE3w35j3bjTHVRgBqDx0Wu5dlOYnwJCOS4VWCI7d7WiVSaOd3IWuB1uNX5iKVKFsiae9viRMq8MMr4raL7zoOrawvUNdQBv6ENEdFYGnyLtrDcMtuwmI5IZAGsoktcbPeuAtD7aeTe7cNh+M1xHpcfH/mSawcZTBIqrc2AFWnawel2H+wMk+T/OfkPR0ZAFps292k246xVpGbGhHJ3MjBO9S5cokMo3WbOqg85D4mVNNYKKtRqTZoetQbhPGoID/mrs+g6WvDW+Mf0AuESjou9U75N6UXAsdhSX626bRRTIF05KWT+Qvaq/elMF45IPeu46Cxc/ZTEKewQy1NQHvlAvCCBOMjYZZh7Nd1JsWJA5VjilPb3amoBIzFNWJmZG7c7ptuteTjIfNlpMzYW/e1LN+DSXkUQMVrHhXR4rgs6Eb9PHZlmA+/jVR1LgqEGsM8QX2W6khs2k1aiQNnAEdglYKdgN+qUwa37DDq9xfacOsZOmJqvApOriAEoRtVkuSxTldvXRETpXm2pRWXoHc47RveeQxo/EkcVGNSC1dN9qZp0UikEl0Ft5CZsO5oZehHlw5+Xs54W/wapvZ3I9Yr+PfGRe60af15qdoMbKuG6+oZN4WVW7ioHEWD6OhaHchZMrVUzz+AA2eQfIxKKp9N8Yt8fLEQU=
+  on:
+    tags: true
+    all_branches: true
+    condition: "$DEPLOY_TO_FORGE = yes"
