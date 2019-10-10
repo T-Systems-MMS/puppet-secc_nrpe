@@ -35,11 +35,37 @@ matrix:
       rvm: 2.5.3
       stage: spec
     -
+      bundler_args:
+      dist: trusty
+      env: PLATFORMS=el_puppet5
+      rvm: 2.5.1
+      stage: acceptance
+      before_script:
+      - bundle exec rake 'litmus:provision_list[travis_el]'
+      - bundle exec bolt command run 'yum install -y epel-release initscripts' --inventoryfile inventory.yaml --nodes='localhost*'
+      - bundle exec rake 'litmus:install_agent[puppet5]'
+      - bundle exec rake litmus:install_module
+      script:
+      - bundle exec rake litmus:acceptance:parallel
+      services: docker
+      sudo: required
+    -
+      bundler_args:
+      dist: trusty
+      env: PLATFORMS=el_puppet6
+      rvm: 2.5.1
+      stage: acceptance
+      before_script:
+      - bundle exec rake 'litmus:provision_list[travis_el]'
+      - bundle exec bolt command run 'yum install -y epel-release initscripts'  --inventoryfile inventory.yaml --nodes='localhost*'
+      - bundle exec rake 'litmus:install_agent[puppet6]'
+      - bundle exec rake litmus:install_module
+      script:
+      - bundle exec rake litmus:acceptance:parallel
+      services: docker
+      sudo: required
+    -
       env: DEPLOY_TO_FORGE=yes
       stage: deploy
-branches:
-  only:
-    - master
-    - /^v\d/
 notifications:
   email: false

@@ -2,6 +2,9 @@ require 'spec_helper_acceptance'
 
 describe 'Class secc_nrpe' do
   context 'with default nrpe config' do
+    after :all do
+      run_shell('service nrpe stop', expect_failures: true)
+    end
 
     let(:manifest) {
     <<-EOS
@@ -10,11 +13,7 @@ describe 'Class secc_nrpe' do
     }
 
     it 'should run without errors' do
-      expect(apply_manifest(manifest, :catch_failures => true).exit_code).to eq(2)
-    end
-
-    it 'should re-run without changes' do
-      expect(apply_manifest(manifest, :catch_changes => true).exit_code).to be_zero
+      idempotent_apply(manifest)
     end
 
     describe package('nrpe') do
