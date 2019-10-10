@@ -38,11 +38,13 @@ matrix:
       bundler_args:
       dist: trusty
       env: PLATFORMS=el_puppet5
-      rvm: 2.5.1
+      rvm: 2.5.3
       stage: acceptance
       before_script:
       - bundle exec rake 'litmus:provision_list[travis_el]'
       - bundle exec bolt command run 'yum install -y epel-release initscripts' --inventoryfile inventory.yaml --nodes='localhost*'
+      # workaround for hanging session
+      #- bundle exec bolt command run 'yum remove less' --inventoryfile inventory.yaml --nodes='localhost*'
       - bundle exec rake 'litmus:install_agent[puppet5]'
       - bundle exec rake litmus:install_module
       script:
@@ -53,11 +55,13 @@ matrix:
       bundler_args:
       dist: trusty
       env: PLATFORMS=el_puppet6
-      rvm: 2.5.1
+      rvm: 2.5.3
       stage: acceptance
       before_script:
       - bundle exec rake 'litmus:provision_list[travis_el]'
       - bundle exec bolt command run 'yum install -y epel-release initscripts'  --inventoryfile inventory.yaml --nodes='localhost*'
+      # workaround for hanging session
+      #- bundle exec bolt command run 'yum remove less' --inventoryfile inventory.yaml --nodes='localhost*'
       - bundle exec rake 'litmus:install_agent[puppet6]'
       - bundle exec rake litmus:install_module
       script:

@@ -4,4 +4,4 @@ default:
   images: ['waffleimage/centos7']
 travis_el:
   provisioner: docker
-  images: ['waffleimage/centos6', 'waffleimage/centos7', 'jgeusebroek/centos8-molecule']
+  images: ['waffleimage/centos6', 'waffleimage/centos7', 'alekseychudov/centos8-systemd']

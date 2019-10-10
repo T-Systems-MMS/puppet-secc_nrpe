@@ -6,27 +6,25 @@ describe 'Class secc_nrpe' do
       run_shell('service nrpe stop', expect_failures: true)
     end
 
-    let(:manifest) {
-    <<-EOS
-      class { 'secc_nrpe':
-        server_address => '127.0.0.1',
-        allowed_hosts  => ['127.0.0.1', '127.0.0.2'],
-        nrpe_homedir   => '/opt/monitoring',
-        command_timeout => 120,
-        nrpe_must_be_root => true,
-      }
+    manifest = <<-EOS
+        class { 'secc_nrpe':
+          server_address => '127.0.0.1',
+          allowed_hosts  => ['127.0.0.1', '127.0.0.2'],
+          nrpe_homedir   => '/opt/monitoring',
+          command_timeout => 120,
+          nrpe_must_be_root => true,
+        }
     EOS
-    }
 
-    it 'should run without errors' do
+    it 'runs without errors' do
       run_shell('service nrpe stop || exit 0')
       idempotent_apply(manifest)
     end
 
     describe user('nrpe') do
-      it { should exist }
-      it { should have_home_directory '/opt/monitoring' }
-      it { should have_login_shell '/sbin/nologin' }
+      it { is_expected.to exist }
+      it { is_expected.to have_home_directory '/opt/monitoring' }
+      it { is_expected.to have_login_shell '/sbin/nologin' }
     end
 
     describe file('/opt/monitoring') do
@@ -52,12 +50,12 @@ describe 'Class secc_nrpe' do
     end
 
     describe file('/etc/sudoers.d/nrpe') do
-		  it { is_expected.to exist }
+      it { is_expected.to exist }
       it { is_expected.to be_mode 440 }
       it { is_expected.to be_owned_by 'root' }
       it { is_expected.to be_grouped_into 'root' }
-      its(:content) { is_expected.to match( /^Defaults\:nrpe \!requiretty$/ ) }
-      its(:content) { is_expected.to match( /^nrpe ALL=\(root\) NOPASSWD\: NRPE_WILDCARD$/ ) }
+      its(:content) { is_expected.to include 'Defaults:nrpe !requiretty' }
+      its(:content) { is_expected.to include 'nrpe ALL=(root) NOPASSWD: NRPE_WILDCARD' }
     end
   end
 end
