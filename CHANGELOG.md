@@ -2,6 +2,9 @@
 
 ## [UNRELEASED]
 
+## [3.2.0] - 2019-10-10
+* update testing, update compatibility
+
 ## [3.1.0] - 2019-08-27
 ### Added
 * make command_timeout configurable
