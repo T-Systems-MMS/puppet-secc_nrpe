@@ -31,6 +31,11 @@ group :development do
   gem "puppet_litmus",                                           require: false if ENV['PUPPET_GEM_VERSION'].nil?
 end
 
+# pin pry to avoid bug
+gem "pry", '< 0.13.0'
+# pin bolt to avoid bug
+gem "bolt", '< 2.0.0'
+
 puppet_version = ENV['PUPPET_GEM_VERSION']
 facter_version = ENV['FACTER_GEM_VERSION']
 hiera_version = ENV['HIERA_GEM_VERSION']
