@@ -15,6 +15,11 @@
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
+## :warning: Deprecated
+
+This module is deprecated an will no longer be maintained or updated.
+If you still need the functionality, we suggest you use [pdxcat-nrpe](https://forge.puppet.com/modules/pdxcat/nrpe) and apply a hardened configuration.
+
 ## Overview
 
 This module provides a partial coverage of the SoC conditions for NRPE under Linux.
